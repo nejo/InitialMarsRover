@@ -1,9 +1,9 @@
 package com.dodevjutsu.kata.marsrover;
 
 public class Rover {
-    private final String direction;
-    private final int x;
-    private final int y;
+    private String direction;
+    private int x;
+    private int y;
 
     public Rover(String direction, int x, int y) {
 
@@ -13,7 +13,11 @@ public class Rover {
     }
 
     public void receive(String commandSequence) {
-
+        if (commandSequence.equals("")) {
+            return;
+        }
+        
+        y += 1;
     }
 
     @Override
@@ -35,5 +39,14 @@ public class Rover {
         result = 31 * result + x;
         result = 31 * result + y;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "direction='" + direction + '\'' +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
