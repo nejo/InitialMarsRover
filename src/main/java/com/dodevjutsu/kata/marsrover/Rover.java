@@ -16,8 +16,12 @@ public class Rover {
         if (commandSequence.equals("")) {
             return;
         }
-        
-        y += 1;
+
+        if (direction.equals("N")) {
+            y += 1;
+        } else {
+            y -=1;
+        }
     }
 
     @Override

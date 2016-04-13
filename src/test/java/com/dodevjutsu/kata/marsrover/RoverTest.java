@@ -24,4 +24,13 @@ public class RoverTest {
         assertThat(rover, is(new Rover("N",1,2)));
     }
 
+    @Test
+    public void movingForwardWhenFacingSouth() {
+        Rover rover = new Rover("S",1,1);
+
+        rover.receive("f");
+
+        assertThat(rover, is(new Rover("S",1,0)));
+    }
+
 }
