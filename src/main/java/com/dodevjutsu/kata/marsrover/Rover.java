@@ -2,14 +2,12 @@ package com.dodevjutsu.kata.marsrover;
 
 public class Rover {
     private String direction;
-    private int x;
-    private int y;
+    private Coordinates coordinates;
 
     public Rover(String direction, int x, int y) {
 
         this.direction = direction;
-        this.x = x;
-        this.y = y;
+        this.coordinates = new Coordinates(x, y);
     }
 
     public void receive(String commandSequence) {
@@ -18,9 +16,9 @@ public class Rover {
         }
 
         if (direction.equals("N")) {
-            y += 1;
+            this.coordinates = coordinates.add(new Coordinates(0, 1));
         } else {
-            y -=1;
+            this.coordinates = coordinates.add(new Coordinates(0, -1));
         }
     }
 
@@ -31,17 +29,15 @@ public class Rover {
 
         Rover rover = (Rover) o;
 
-        if (x != rover.x) return false;
-        if (y != rover.y) return false;
-        return direction != null ? direction.equals(rover.direction) : rover.direction == null;
+        if (direction != null ? !direction.equals(rover.direction) : rover.direction != null) return false;
+        return coordinates != null ? coordinates.equals(rover.coordinates) : rover.coordinates == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = direction != null ? direction.hashCode() : 0;
-        result = 31 * result + x;
-        result = 31 * result + y;
+        result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
         return result;
     }
 
@@ -49,8 +45,7 @@ public class Rover {
     public String toString() {
         return "Rover{" +
                 "direction='" + direction + '\'' +
-                ", x=" + x +
-                ", y=" + y +
+                ", coordinates=" + coordinates +
                 '}';
     }
 }
